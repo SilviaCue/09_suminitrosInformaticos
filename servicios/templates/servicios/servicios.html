@@ -1,0 +1,30 @@
+{% extends 'SuministrosInformaticosApp/base.html' %} {% load static %}
+<!-- blockend tiene que estar indentado para que no de error por eso dejo ese espacio ya que al corregirse solo lo posiicona mal-->
+{% block content %} {% for servicio in servicios %}
+
+<!-- Heading -->
+
+<section class="page-section clearfix">
+    <div class="container">
+      <div class="intro mb-4 text-center bg-faded p-5 rounded" style="display: flex; align-items: center;">
+        <div style="flex: 1; margin-right: 20px;">
+          <img
+            src="{{ servicio.imagen.url }}"
+            class="intro-img img-fluid rounded"
+            alt=""
+            style="width: 100%; max-width: 300px;"
+          />
+        </div>
+        <div>
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-lower">{{ servicio.titulo }}</span>
+            <span class="section-heading-upper">{{ servicio.contenido }}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+
+{% endfor %} {% endblock %}

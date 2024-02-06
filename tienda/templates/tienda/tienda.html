@@ -1,0 +1,40 @@
+{% extends 'SuministrosInformaticosApp/base.html' %} {% load static %}
+<!-- blockend tiene que estar indentado para que no de error por eso dejo ese espacio ya que al corregirse solo lo posiciona mal-->
+{% block content %}
+<div class="container">
+  <div style="float: right;">
+    <!-- <p style="color: white;">Total:{{importe_total_carro}}€</p>-->
+  
+    {% if request.user.is_authenticated %}
+        <!-- espacio para que el corrector no descuadre el codigo -->
+        {% include 'carro/widget.html' %}
+        <!-- espacio para que el corrector no descuadre el codigo -->
+    {% else %}
+        <!-- espacio para que el corrector no descuadre el codigo -->
+        <div class="alert alert-danger text-center"> Login para comprar </div>
+        <!-- espacio para que el corrector no descuadre el codigo -->
+    {% endif %}
+</div>
+
+  <div class="row">
+    {% for tienda in tienda %}
+    <div class="col-md-3 mb-4"">
+      <div class="card" style="width: 100%; margin: 0 auto; opacity: 0.9; background-color: #f8f9fa;">
+        <img src="{{ tienda.imagen.url }}" class="card-img-top" style="height: 200px; object-fit: cover;"/>
+        <div class="card-body" style="text-align: center">
+          <h6 class="card-title">{{ tienda.producto }}</h6>
+          <p class="card-text">{{ tienda.precio }}&nbsp;€</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{% url 'carro:agregar' tienda.id %} " class="btn btn-success"> Comprar</a>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+<!-- -->
+
